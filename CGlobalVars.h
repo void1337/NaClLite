@@ -16,8 +16,8 @@ public:
 	float aimbot_switch;
 	float aimbot_active;
 	float aimbot_key;
-	float aimbot_fov;
-	float aimbot_melee;
+	float aimbot_fov = 1;
+	float aimbot_melee = 1;
 	float aimbot_medigun;
 	float aimbot_zoomedonly;
 	float aimbot_waitforcharge;

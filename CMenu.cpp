@@ -77,6 +77,10 @@ void CCheatMenu::Render(void)
 		i = AddItem(i, " - Enabled", &gCvars.aimbot_active, 0, 1, 1, false);
 		i = AddItem(i, "  * Key", &gCvars.aimbot_key, 0, 8, 1, false);
 		i = AddItem(i, "  * FOV", &gCvars.aimbot_fov, 0, 180, 1, false);
+		if (!gCvars.aimbot_silent)
+		{
+			i = AddItem(i, "  * Smooth", &gCvars.aimbot_smooth, 0, 180, 1, false);
+		}
 		i = AddItem(i, "  * Silent", &gCvars.aimbot_silent, 0, 1, 1, false);
 		i = AddItem(i, "  * Zoomed Only", &gCvars.aimbot_zoomedonly, 0, 1, 1, false);
 		i = AddItem(i, "  * Wait For Charge", &gCvars.aimbot_waitforcharge, 0, 1, 1, false);
