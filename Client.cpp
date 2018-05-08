@@ -115,52 +115,57 @@ void __fastcall FrameStageNotifyThink(PVOID CHLClient, void *_this, ClientFrameS
 			}
 
 			bool bSkyNeedsUpdate = true;
-			if (gCvars.sky_changer && bSkyNeedsUpdate && gInts.Engine->IsInGame()) //I didn't add this to the menu simply because I'm lazy, this code is (atleast I think) made by plasmafart
+			if (bSkyNeedsUpdate && gInts.Engine->IsInGame())
 			{
-				if (gInts.cvar->FindVar("sv_skyname")->GetString() != "sky_night_01")
+				typedef bool(_cdecl* LoadNamedSkysFn)(const char*);
+				static LoadNamedSkysFn LoadSkys = (LoadNamedSkysFn)gSignatures.GetEngineSignature("55 8B EC 81 EC ? ? ? ? 8B 0D ? ? ? ? 53 56 57 8B 01 C7 45");
+
+				auto OriginalSky = gInts.cvar->FindVar("sv_skyname")->GetString();
+				OriginalSky; //Stores the current skyname
+				if (gCvars.sky_changer)
 				{
-					typedef bool(_cdecl* LoadNamedSkysFn)(const char*);
-					static LoadNamedSkysFn LoadSkys = (LoadNamedSkysFn)gSignatures.GetEngineSignature("55 8B EC 81 EC ? ? ? ? 8B 0D ? ? ? ? 53 56 57 8B 01 C7 45");
-
-
-					if (gCvars.sky_changer_value == 1)
+					if (gInts.cvar->FindVar("sv_skyname")->GetString() != "sky_night_01")
 					{
-						LoadSkys("sky_night_01");
-						bool bSkyNeedsUpdate = true;
+						if (gCvars.sky_changer_value == 0)
+						{
+							LoadSkys("sky_night_01");
+							bool bSkyNeedsUpdate = true;
+						}
 					}
 
-					if (gCvars.sky_changer_value == 2)
+					if (gInts.cvar->FindVar("sv_skyname")->GetString() != "sky_nightfall_01")
 					{
-						LoadSkys("sky_nightfall_01");
-						bool bSkyNeedsUpdate = true;
+						if (gCvars.sky_changer_value == 1)
+						{
+							LoadSkys("sky_nightfall_01");
+							bool bSkyNeedsUpdate = true;
+						}
 					}
 
-					if (gCvars.sky_changer_value == 3)
+					if (gInts.cvar->FindVar("sv_skyname")->GetString() != "sky_harvest_night_01")
 					{
-						LoadSkys("sky_harvest_night_01 ");
-						bool bSkyNeedsUpdate = true;
+						if (gCvars.sky_changer_value == 2)
+						{
+							LoadSkys("sky_harvest_night_01");
+							bool bSkyNeedsUpdate = true;
+						}
 					}
 
-					if (gCvars.sky_changer_value == 4)
+					if (gInts.cvar->FindVar("sv_skyname")->GetString() != "sky_halloween")
 					{
-						LoadSkys("sky_halloween");
-						bool bSkyNeedsUpdate = true;
+						if (gCvars.sky_changer_value == 3)
+						{
+							LoadSkys("sky_halloween");
+							bool bSkyNeedsUpdate = true;
+						}
 					}
-
-
-					if (gCvars.sky_changer_value == 5)
-					{
-						LoadSkys("sky_pyroland_01");
-						bool bSkyNeedsUpdate = true;
-					}
-
-					if (gCvars.sky_changer_value == 0)
-					{
-						LoadSkys("go buy lmaobox.net instead of using this shit lmao xd");
-						bool bSkyNeedsUpdate = true;
-					}
+					bSkyNeedsUpdate = false;
 				}
-				bSkyNeedsUpdate = false;
+				else
+				{
+					LoadSkys(OriginalSky);
+					bool bSkyNeedsUpdate = true;
+				}
 			}
 
 			for (auto i = 1; i <= gInts.Engine->GetMaxClients(); i++) //This is big heads/big torso, quite simple and at the same time shitty.

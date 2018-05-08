@@ -21,7 +21,7 @@ char* szBoneModes[] = {
 };
 
 char* szSkys[] = {
-	"None", "Night", "Nightfall", "Harvest Night", "Halloween", "Pyroland",
+	"Night", "Nightfall", "HarvestN", "Halloween",
 };
 
 char* szMenuColors[] = {
@@ -158,6 +158,10 @@ void CCheatMenu::Render(void)
 		i = AddItem(i, "  - Misc", &gCvars.vismisc_active, 0, 1, 1, false);
 		if (gCvars.vismisc_active)
 		{
+			i = AddItem(i, "   * Sky Changer", &gCvars.sky_changer, 0, 1, 1, false);
+			if (gCvars.sky_changer)
+				i = AddItem(i, "    > Sky Selection", &gCvars.sky_changer_value, 0, 3, 1, false);
+
 			i = AddItem(i, "   * No Zoom", &gCvars.misc_nozoom, 0, 1, 1, false);
 			i = AddItem(i, "   * No Scope", &gCvars.misc_noscope, 0, 1, 1, false);
 			if (gCvars.misc_noscope)
@@ -169,8 +173,8 @@ void CCheatMenu::Render(void)
 		}
 	}
 
-	i = AddItem(i, "HvH", &gCvars.misc_switch, 0, 1, 1, true);
-	if (gCvars.misc_switch)
+	i = AddItem(i, "HvH", &gCvars.hvh_switch, 0, 1, 1, true);
+	if (gCvars.hvh_switch)
 	{
 		i = AddItem(i, " - Anti Aim", &gCvars.hvh_aaswitch, 0, 1, 1, false);
 		if (gCvars.hvh_aaswitch)
@@ -193,7 +197,6 @@ void CCheatMenu::Render(void)
 		{
 			i = AddItem(i, "  * Bunnyhop", &gCvars.misc_bunnyhop, 0, 1, 1, false);
 			i = AddItem(i, "  * Autostrafe", &gCvars.misc_autostrafe, 0, 1, 1, false);
-			i = AddItem(i, "  * Minigun Toggle", &gCvars.misc_miniguntoggle, 0, 1, 1, false);
 			i = AddItem(i, "  * Taunt Slide", &gCvars.misc_tauntslide, 0, 1, 1, false);
 			i = AddItem(i, "  * No Push", &gCvars.misc_nopush, 0, 1, 1, false);
 			i = AddItem(i, "  * Cheats Bypass", &gCvars.misc_cheatsbypass, 0, 1, 1, false);
@@ -215,7 +218,7 @@ void CCheatMenu::Render(void)
 		{
 			i = AddItem(i, "  * Value", &gCvars.removecond_value, 0, 4000, 100, false);
 			i = AddItem(i, "  * Key", &gCvars.removecond_key, 0, 8, 1, false);
-			i = AddItem(i, "  * Disable on Attack ", &gCvars.removecond_disableonattack, 0, 1, 1, false);
+			i = AddItem(i, "  * on Attack ", &gCvars.removecond_onattack, 0, 1, 1, false);
 		}
 	}
 

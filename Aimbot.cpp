@@ -218,11 +218,10 @@ void CAimbot::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 		return;
 
 	auto pWep = pLocal->GetActiveWeapon();
-	/*if (gCvars.aimbot_waitforcharge)
+	if (gCvars.aimbot_waitforcharge) //Advanced Ambassador Wait For Charge!
 		if (pWep->GetItemDefinitionIndex() == spyweapons::WPN_Ambassador || pWep->GetItemDefinitionIndex() == spyweapons::WPN_FestiveAmbassador)
 			if (!CanAmbassadorHeadshot(pLocal)) return;
-			-> @TODO: Initialize Globals in DllMain, the ambassador check is crashing because of curtime being null or smth!
-*/
+
 
 	if (iBestHitbox == -1)
 		return;

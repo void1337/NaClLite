@@ -118,6 +118,7 @@ public:
 	float removecond_automedkit;
 	float removecond_autoinstantcap;
 	float removecond_disableonattack = true;
+	float removecond_onattack;
 
 
 	float originalCrosshair;

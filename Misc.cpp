@@ -126,11 +126,6 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 
 		last_spam_point = std::chrono::system_clock::now();
 	}
-	auto pWep = pLocal->GetActiveWeapon();
-	if (gCvars.misc_miniguntoggle && pWep->GetSlot() == 0) //suggested by Cyanide01 on UC.
-	{
-		pCommand->buttons &= IN_ATTACK2;
-	}
 
 	static ConVar* sv_cheats = gInts.cvar->FindVar("sv_cheats");
 	if (gCvars.misc_cheatsbypass)
