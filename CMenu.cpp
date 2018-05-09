@@ -65,7 +65,7 @@ enum class e_mw
 byte key = NULL;
 
 void CCheatMenu::Render(void)
-{
+{//
 	gInts.Engine->GetScreenSize(ScreenW, ScreenH);
 
 	int i = 0;
