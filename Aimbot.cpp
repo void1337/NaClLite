@@ -395,19 +395,19 @@ int CAimbot::GetBestHitbox(CBaseEntity* pLocal, CBaseEntity* pEntity)
 			iBestHitbox = 0;
 		else
 			iBestHitbox = 4;
-	}
-	else
-	{
-		iBestHitbox = gCvars.aimbot_hitbox - 1;
-	}
-
-	if (gCvars.aimbot_hitscan)
-	{
-		for (int i = gCvars.aimbot_hitbox; i < 17; i++) // int i equals prioritized hitbux
+		for (int i = iBestHitbox; i < 17; i++) // int i equals prioritized hitbux, so above we check the weapon so it prioritizes the proper hitbox.
 		{
 			if (Util->IsVisible(pLocal, pEntity, pLocal->GetEyePosition(), pEntity->GetHitboxPosition(i)))
 				return i;
 		}
+	}
+	else if (gCvars.aimbot_hitbox == 1)
+	{
+		iBestHitbox = 0;
+	}
+	else if (gCvars.aimbot_hitbox == 2)
+	{
+		iBestHitbox = 4;
 	}
 
 	if (pEntity->GetHitboxPosition(iBestHitbox).IsZero())

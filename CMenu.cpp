@@ -45,6 +45,11 @@ char* szHitboxes[] =
 	"Right Hip", "Right Knee", "Right Foot",
 };
 
+char* szNewHitboxes[] =
+{
+	"Auto", "Head", "Body",
+};
+
 int CCheatMenu::AddItem(int nIndex, char szTitle[30], float* value, float flMin, float flMax, float flStep, bool isClassSwitch)
 {
 	strcpy(pMenu[nIndex].szTitle, szTitle);
@@ -84,10 +89,7 @@ void CCheatMenu::Render(void)
 		i = AddItem(i, "  * Silent", &gCvars.aimbot_silent, 0, 1, 1, false);
 		i = AddItem(i, "  * Zoomed Only", &gCvars.aimbot_zoomedonly, 0, 1, 1, false);
 		i = AddItem(i, "  * Wait For Charge", &gCvars.aimbot_waitforcharge, 0, 1, 1, false);
-		i = AddItem(i, "  * Hitscan", &gCvars.aimbot_hitscan, 0, 1, 1, false);
-		if (gCvars.aimbot_hitscan)
-			i = AddItem(i, "   > Sniper Hitscan", &gCvars.aimbot_sniperhitscan, 0, 1, 1, false);
-		i = AddItem(i, "  * Hitbox", &gCvars.aimbot_hitbox, 0, 18, 1, false);
+		i = AddItem(i, "  * Hitbox", &gCvars.aimbot_hitbox, 0, 2, 1, false);
 		i = AddItem(i, "  * Melee Aimbot", &gCvars.aimbot_melee, 0, 1, 1, false);
 		i = AddItem(i, "  * Autoshoot", &gCvars.aimbot_autoshoot, 0, 1, 1, false);
 		i = AddItem(i, "  * Ignore Cloaked", &gCvars.aimbot_ignorecloaked, 0, 1, 1, false);
@@ -286,6 +288,11 @@ void CCheatMenu::DrawMenu(void)
 					gDrawManager.DrawString(xx, y + (h * i), pMenu[i].value[0] ? Color::White() : Color(105, 105, 105, 255), "%s", szBoneModes[(int)pMenu[i].value[0]]);
 				}
 
+				else if (!strcmp(pMenu[i].szTitle, "  * Hitbox"))
+				{
+					gDrawManager.DrawString(xx, y + (h * i), pMenu[i].value[0] ? Color::White() : Color(105, 105, 105, 255), "%s", szNewHitboxes[(int)pMenu[i].value[0]]);
+				}
+
 				else if (!strcmp(pMenu[i].szTitle, "    > Sky Selection"))
 				{
 					gDrawManager.DrawString(xx, y + (h * i), pMenu[i].value[0] ? Color::White() : Color(105, 105, 105, 255), "%s", szSkys[(int)pMenu[i].value[0]]);
@@ -359,6 +366,11 @@ void CCheatMenu::DrawMenu(void)
 				else if (!strcmp(pMenu[i].szTitle, "   * Bones"))
 				{
 					gDrawManager.DrawString(xx, y + (h * i), pMenu[i].value[0] ? Color::White() : Color(105, 105, 105, 255), "%s", szBoneModes[(int)pMenu[i].value[0]]);
+				}
+
+				else if (!strcmp(pMenu[i].szTitle, "  * Hitbox"))
+				{
+					gDrawManager.DrawString(xx, y + (h * i), pMenu[i].value[0] ? Color::White() : Color(105, 105, 105, 255), "%s", szNewHitboxes[(int)pMenu[i].value[0]]);
 				}
 
 				else if (!strcmp(pMenu[i].szTitle, "    > Sky Selection"))
