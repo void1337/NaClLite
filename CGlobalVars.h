@@ -51,6 +51,7 @@ public:
 
 	float esp_switch;
 	float esp_active;
+	float esp_door;
 	float esp_enemyonly;
 	float esp_box;
 	float esp_name;

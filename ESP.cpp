@@ -10,6 +10,7 @@ CESP gESP;
 
 void CESP::Run(CBaseEntity* pLocal)
 {
+	Vector vOrigin, vIdk;
 	if (!gCvars.esp_active)
 		return;
 	for (int i = 1; i <= gInts.Engine->GetMaxClients(); i++)
@@ -35,6 +36,107 @@ void CESP::Run(CBaseEntity* pLocal)
 			continue;
 
 		Player_ESP(pLocal, pEntity);
+	}
+	for (int i = 1; i <= gInts.EntList->GetHighestEntityIndex(); i++) //FUCKING DOOR ESP 
+	{
+		CBaseEntity *pEntity = gInts.EntList->GetClientEntity(i);
+
+		if (pEntity == NULL)
+			continue;
+
+		if (!pEntity)
+			continue;
+
+		if (pEntity->GetClientClass()->iClassID != 6)
+			continue;
+
+		if (!gCvars.esp_door)
+			continue;
+
+		Color doorflavor = Color(255, 255, 255, 255);
+
+		const matrix3x4& vMatrix = pEntity->GetRgflCoordinateFrame();
+		pEntity->GetWorldSpaceCenter(vOrigin);
+		Vector vMin = pEntity->GetCollideableMins();
+		Vector vMax = pEntity->GetCollideableMaxs();
+
+		Vector vPointList[] = {
+			Vector(vMin.x, vMin.y, vMin.z),
+			Vector(vMin.x, vMax.y, vMin.z),
+			Vector(vMax.x, vMax.y, vMin.z),
+			Vector(vMax.x, vMin.y, vMin.z),
+			Vector(vMax.x, vMax.y, vMax.z),
+			Vector(vMin.x, vMax.y, vMax.z),
+			Vector(vMin.x, vMin.y, vMax.z),
+			Vector(vMax.x, vMin.y, vMax.z)
+		};
+		Vector a;
+		Vector vTransformed[8];
+
+		for (int i = 0; i < 8; i++)
+			for (int j = 0; j < 3; j++)
+				vTransformed[i][j] = vPointList[i].Dot((Vector&)vMatrix[j]) + vMatrix[j][3];
+
+		Vector flb, brt, blb, frt, frb, brb, blt, flt;
+
+		if (!gDrawManager.WorldToScreen(vTransformed[3], flb) ||
+			!gDrawManager.WorldToScreen(vTransformed[0], blb) ||
+			!gDrawManager.WorldToScreen(vTransformed[2], frb) ||
+			!gDrawManager.WorldToScreen(vTransformed[6], blt) ||
+			!gDrawManager.WorldToScreen(vTransformed[5], brt) ||
+			!gDrawManager.WorldToScreen(vTransformed[4], frt) ||
+			!gDrawManager.WorldToScreen(vTransformed[1], brb) ||
+			!gDrawManager.WorldToScreen(vTransformed[7], flt))
+			return;
+
+		Vector arr[] = { flb, brt, blb, frt, frb, brb, blt, flt };
+
+		float left = flb.x;
+		float top = flb.y;
+		float right = flb.x;
+		float bottom = flb.y;
+
+		for (int i = 0; i < 8; i++)
+		{
+			if (left > arr[i].x)
+				left = arr[i].x;
+			if (top < arr[i].y)
+				top = arr[i].y;
+			if (right < arr[i].x)
+				right = arr[i].x;
+			if (bottom > arr[i].y)
+				bottom = arr[i].y;
+		}
+
+
+		float x = left;
+		float y = bottom;
+		float w = right - left;
+		float h = top - bottom;
+
+		x += ((right - left) / 8); //pseudo fix for those THICC boxes
+		w -= ((right - left) / 8) * 2;
+		int iY = 0;
+		//iHp is only for health bar
+		int iHp = pEntity->GetHealth(), iMaxHp = pEntity->GetMaxHealth();
+		if (iHp > iMaxHp)
+			iHp = iMaxHp;
+		if (gDrawManager.WorldToScreen(vOrigin, vIdk))
+		{
+
+			if (gCvars.esp_name)
+			{
+				gDrawManager.DrawString(x + w + 2, y + iY, doorflavor, "Door");
+				iY += gDrawManager.GetESPHeight();
+			}
+
+			if (gCvars.esp_box)
+			{
+				gDrawManager.OutlineRect(x, y, w, h, doorflavor);
+				gDrawManager.OutlineRect(x + 1, y + 1, w - 2, h - 2, doorflavor);
+			}
+
+		}
 	}
 }
 

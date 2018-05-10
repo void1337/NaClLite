@@ -149,6 +149,7 @@ void CCheatMenu::Render(void)
 			i = AddItem(i, "   * Status", &gCvars.esp_status, 0, 1, 1, false);
 			i = AddItem(i, "   * Health", &gCvars.esp_health, 0, 3, 1, false);
 			i = AddItem(i, "   * Bones", &gCvars.esp_bones, 0, 3, 1, false);
+			i = AddItem(i, "   * Door ESP", &gCvars.esp_door, 0, 1, 1, false);
 			i = AddItem(i, "   * Aimbot Highlight", &gCvars.esp_aimbothighlights, 0, 1, 1, false);
 			i = AddItem(i, "   * Radar", &gCvars.radar_enabled, 0, 1, 1, false);
 			if (gCvars.radar_enabled)
