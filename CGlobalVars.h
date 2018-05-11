@@ -79,6 +79,8 @@ public:
 	float misc_tauntslide;
 	float misc_fix;
 	float misc_nopush;
+	float misc_lagexploit;
+	float misc_lagexploit_key;
 	float misc_bigheadisbig;
 	float misc_bigtorsoisbig;
 	float misc_thirdperson;
@@ -94,6 +96,7 @@ public:
 	float misc_miniguntoggle;
 	float misc_chatspam_newlines;
 	float misc_cheatsbypass;
+	float misc_claymode;
 	float aimbot_resolver;
 	float aimbot_resolver_fakeup;
 	float hvh_switch;

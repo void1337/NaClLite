@@ -93,7 +93,55 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 	}
 
 
-
+	if (gCvars.misc_lagexploit && Util->IsKeyPressed(gCvars.misc_lagexploit_key))
+	{
+		gInts.Engine->ClientCmd("voicemenu 0 0 ");
+		gInts.Engine->ClientCmd("voicemenu 0 1");
+		gInts.Engine->ClientCmd("voicemenu 0 2 ");
+		gInts.Engine->ClientCmd("voicemenu 0 3 ");
+		gInts.Engine->ClientCmd("voicemenu 0 4");
+		gInts.Engine->ClientCmd("voicemenu 0 5");
+		gInts.Engine->ClientCmd("voicemenu 0 6 ");
+		gInts.Engine->ClientCmd("voicemenu 0 7 ");
+		gInts.Engine->ClientCmd("voicemenu 1 0 ");
+		gInts.Engine->ClientCmd("voicemenu 1 1 ");
+		gInts.Engine->ClientCmd("voicemenu 1 2");
+		gInts.Engine->ClientCmd("voicemenu 1 3");
+		gInts.Engine->ClientCmd("voicemenu 1 4 ");
+		gInts.Engine->ClientCmd("voicemenu 1 5");
+		gInts.Engine->ClientCmd("voicemenu 1 6 ");
+		gInts.Engine->ClientCmd("voicemenu 2 0 ");
+		gInts.Engine->ClientCmd("voicemenu 2 1 ");
+		gInts.Engine->ClientCmd("voicemenu 2 2");
+		gInts.Engine->ClientCmd("voicemenu 2 3");
+		gInts.Engine->ClientCmd("voicemenu 2 4 ");
+		gInts.Engine->ClientCmd("voicemenu 2 5 ");
+		gInts.Engine->ClientCmd("voicemenu 2 6");
+		gInts.Engine->ClientCmd("voicemenu 2 7");
+		gInts.Engine->ClientCmd("voicemenu 0 0 ");
+		gInts.Engine->ClientCmd("voicemenu 0 1");
+		gInts.Engine->ClientCmd("voicemenu 0 2 ");
+		gInts.Engine->ClientCmd("voicemenu 0 3 ");
+		gInts.Engine->ClientCmd("voicemenu 0 4");
+		gInts.Engine->ClientCmd("voicemenu 0 5");
+		gInts.Engine->ClientCmd("voicemenu 0 6 ");
+		gInts.Engine->ClientCmd("voicemenu 0 7 ");
+		gInts.Engine->ClientCmd("voicemenu 1 0 ");
+		gInts.Engine->ClientCmd("voicemenu 1 1 ");
+		gInts.Engine->ClientCmd("voicemenu 1 2");
+		gInts.Engine->ClientCmd("voicemenu 1 3");
+		gInts.Engine->ClientCmd("voicemenu 1 4 ");
+		gInts.Engine->ClientCmd("voicemenu 1 5");
+		gInts.Engine->ClientCmd("voicemenu 1 6 ");
+		gInts.Engine->ClientCmd("voicemenu 2 0 ");
+		gInts.Engine->ClientCmd("voicemenu 2 1 ");
+		gInts.Engine->ClientCmd("voicemenu 2 2");
+		gInts.Engine->ClientCmd("voicemenu 2 3");
+		gInts.Engine->ClientCmd("voicemenu 2 4 ");
+		gInts.Engine->ClientCmd("voicemenu 2 5 ");
+		gInts.Engine->ClientCmd("voicemenu 2 6");
+		gInts.Engine->ClientCmd("voicemenu 2 7");
+	}
 
 
 	if (gCvars.misc_chatspam)
@@ -125,6 +173,16 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 		current_index++;
 
 		last_spam_point = std::chrono::system_clock::now();
+	}
+
+	static ConVar* mat_fullbright = gInts.cvar->FindVar("mat_fullbright");
+	if (gCvars.misc_claymode)
+	{
+		if (mat_fullbright->GetInt() == 0) mat_fullbright->SetValue(2);
+	}
+	else
+	{
+		mat_fullbright->SetValue(0);
 	}
 
 	static ConVar* sv_cheats = gInts.cvar->FindVar("sv_cheats");

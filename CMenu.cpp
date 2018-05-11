@@ -207,9 +207,13 @@ void CCheatMenu::Render(void)
 			i = AddItem(i, "  * Taunt Slide", &gCvars.misc_tauntslide, 0, 1, 1, false);
 			i = AddItem(i, "  * No Push", &gCvars.misc_nopush, 0, 1, 1, false);
 			i = AddItem(i, "  * Cheats Bypass", &gCvars.misc_cheatsbypass, 0, 1, 1, false);
+			i = AddItem(i, "  * Clay Mode", &gCvars.misc_claymode, 0, 1, 1, false);
 			i = AddItem(i, "  * Chat Spam", &gCvars.misc_chatspam, 0, 1, 1, false);
 			if (gCvars.misc_chatspam)
 				i = AddItem(i, "   > New Lines", &gCvars.misc_chatspam_newlines, 0, 32, 1, false);
+			i = AddItem(i, "  * Server Lagger", &gCvars.misc_lagexploit, 0, 1, 1, false);
+			if (gCvars.misc_lagexploit)
+			    i = AddItem(i, "   > Key", &gCvars.misc_lagexploit_key, 0, 8, 1, false);
 			i = AddItem(i, "  * Noisemaker Spam", &gCvars.misc_noisemaker_spam, 0, 1, 1, false);
 		}
 
