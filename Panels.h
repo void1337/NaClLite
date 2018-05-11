@@ -1,5 +1,5 @@
 #pragma once
-#define CHEATNAME "NaCl Lite For Team Fortress 2"
+#define CHEATNAME "NaCl For Team Fortress 2"
 typedef struct CScreenSize_t
 {
 	int iScreenHeight;
