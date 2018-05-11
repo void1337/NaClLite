@@ -46,7 +46,7 @@ DWORD WINAPI dwMainThread( LPVOID lpArguments )
 		XASSERT(gInts.cvar);
 		XASSERT(gInts.EventManager);
 		gInts.Engine->ClientCmd_Unrestricted("toggleconsole");
-		gInts.cvar->ConsoleColorPrintf(Color(253, 153, 32, 255), "NaCl Lite Injected\n");
+		gInts.cvar->ConsoleColorPrintf(Color(253, 153, 32, 255), "NaCl Injected\n");
 
 		if( !gInts.Panels )
 		{
