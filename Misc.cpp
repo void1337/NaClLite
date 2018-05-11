@@ -147,10 +147,9 @@ void CMisc::Run(CBaseEntity* pLocal, CUserCmd* pCommand)
 	if (gCvars.misc_chatspam)
 	{
 		const std::vector<std::string> chatlines = {
-			"NaCl - Best TF2 Rage/Legit Cheat!",
-			"NaCl - Developed by wasky32",
-			"NaCl - Generate Some NaCl",
-			"NaCl - Rage/Legit Cheat",
+			"NaCl - Salty Bananas!",
+			"NaCl - www.github.com/waxxyTF2/NaClLite",
+			"NaCl - Open-Source TF2 Cheat",
 		};
 		std::chrono::time_point<std::chrono::system_clock> last_spam_point{};
 		int current_index{ 0 };
