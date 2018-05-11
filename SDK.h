@@ -171,7 +171,10 @@ public:
 		typedef bool(__thiscall *OriginalFn)(PVOID);
 		return getvfunc<OriginalFn>(this, 137)(this);
 	}
-
+	int GetHitboxSet()
+	{
+		DYNVAR_RETURN(int, this, "DT_BaseAnimating", "m_nHitboxSet");
+	}
 	Vector& GetAngles()
 	{
 		static int offset = gNetVars.get_offset("DT_TFPlayer", "tfnonlocaldata", "m_angEyeAngles[0]");
@@ -2088,10 +2091,10 @@ enum tf_cond
     TFCond_Disguising = (1 << 2), //Toggled when a Spy is disguising.  
     TFCond_Disguised = (1 << 3), //Toggled when a Spy is disguised. 
     TFCond_Cloaked = (1 << 4), //Toggled when a Spy is invisible. 
-    TFCond_Ubercharged = (1 << 5), //Toggled when a player is ÜberCharged. 
+    TFCond_Ubercharged = (1 << 5), //Toggled when a player is ÃœberCharged. 
     TFCond_TeleportedGlow = (1 << 6), //Toggled when someone leaves a teleporter and has glow beneath their feet. 
     TFCond_Taunting = (1 << 7), //Toggled when a player is taunting. 
-    TFCond_UberchargeFading = (1 << 8), //Toggled when the ÜberCharge is fading. 
+    TFCond_UberchargeFading = (1 << 8), //Toggled when the ÃœberCharge is fading. 
     TFCond_CloakFlicker = (1 << 9), //Toggled when a Spy is visible during cloak. 
     TFCond_Teleporting = (1 << 10), //Only activates for a brief second when the player is being teleported; not very useful. 
     TFCond_Kritzkrieged = (1 << 11), //Toggled when a player is being crit buffed by the KritzKrieg. 
@@ -2136,7 +2139,7 @@ enum tf_cond
 	TFCondEx_DisguisedAsDispenser = (1 << 17), //Bot is disguised as dispenser.
 	TFCondEx_Sapped = (1 << 18), //MvM bot is being sapped.
 	TFCondEx_UberchargedHidden = (1 << 19), //MvM Related
-	TFCondEx_UberchargedCanteen = (1 << 20), //Player is receiving ÜberCharge from a canteen.
+	TFCondEx_UberchargedCanteen = (1 << 20), //Player is receiving ÃœberCharge from a canteen.
 	TFCondEx_HalloweenBombHead = (1 << 21), //Player has a bomb on their head from Merasmus.
 	TFCondEx_HalloweenThriller = (1 << 22), //Players are forced to dance from Merasmus.
 	TFCondEx_BulletCharge = (1 << 26), //Player is receiving 75% reduced damage from bullets.
