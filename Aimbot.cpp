@@ -276,7 +276,7 @@ int CAimbot::GetBestTarget(CBaseEntity* pLocal, CUserCmd* pCommand)
 	int iBestTarget = -1;
 	int bestTarget = -1;					 //this num could be smaller 
 	float flDistToBest = 99999.f;
-	float minimalDistance = 99999.0;
+	double minimalDistance = 99999.0;
 
 	Vector vLocal = pLocal->GetEyePosition();
 

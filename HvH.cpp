@@ -69,9 +69,9 @@ float edgeToEdgeOn = 0;
 bool findEdge(float edgeOrigYaw, int pitch_mode)
 {
 	//distance two vectors and report their combined distances
-	float edgeLeftDist = edgeDistance(edgeOrigYaw - 21);
+	int edgeLeftDist = edgeDistance(edgeOrigYaw - 21);
 	edgeLeftDist = edgeLeftDist + edgeDistance(edgeOrigYaw - 27);
-	float edgeRightDist = edgeDistance(edgeOrigYaw + 21);
+	int edgeRightDist = edgeDistance(edgeOrigYaw + 21);
 	edgeRightDist = edgeRightDist + edgeDistance(edgeOrigYaw + 27);
 
 	//If the distance is too far, then set the distance to max so the angle isnt used
