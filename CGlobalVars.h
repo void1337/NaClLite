@@ -86,6 +86,7 @@ public:
 	float misc_thirdperson;
 	float sky_changer;
 	float sky_changer_value;
+	float misc_cleanscreenshots;
 	float misc_nozoom;
 	float misc_nozoom2;
 	float misc_noscope;
