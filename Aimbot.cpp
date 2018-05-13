@@ -298,7 +298,9 @@ int CAimbot::GetBestTarget(CBaseEntity* pLocal, CUserCmd* pCommand)
 		if (pEntity->GetLifeState() != LIFE_ALIVE)
 			continue;
 
-		if (pEntity->GetTeamNum() == pLocal->GetTeamNum())
+		static ConVar* mp_friendlyfire = gInts.cvar->FindVar("mp_friendlyfire");
+
+		if (mp_friendlyfire->GetInt() == 0 && pEntity->GetTeamNum() == pLocal->GetTeamNum())
 			continue;
 
 		int iBestHitbox = GetBestHitbox(pLocal, pEntity);
