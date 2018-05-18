@@ -230,7 +230,6 @@ void CCheatMenu::Render(void)
 		{
 			i = AddItem(i, "  * Value", &gCvars.removecond_value, 0, 4000, 100, false);
 			i = AddItem(i, "  * Key", &gCvars.removecond_key, 0, 8, 1, false);
-			i = AddItem(i, "  * on Attack ", &gCvars.removecond_onattack, 0, 1, 1, false);
 		}
 	}
 
